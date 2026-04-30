@@ -2,7 +2,9 @@ const nodemailer = require('nodemailer');
 
 const createTransporter = () => {
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp-relay.brevo.com',
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
@@ -43,9 +45,9 @@ const sendOTPEmail = async (to, otp) => {
               <div class="otp">${otp}</div>
               <div class="note">Valid for 5 minutes only</div>
             </div>
-            <p>If you did not request this, please ignore this email. Your account remains secure.</p>
+            <p>If you did not request this, please ignore this email.</p>
             <div class="footer">
-              This is an automated message. Do not reply to this email.
+              This is an automated message. Do not reply.
             </div>
           </div>
         </body>
